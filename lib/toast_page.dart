@@ -1,29 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
-class SnackBarPage extends StatelessWidget {
-  const SnackBarPage({Key? key}) : super(key: key);
+class ToastPage extends StatelessWidget {
+  const ToastPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Snack Bar'),
+          title: const Text('Toast'),
           centerTitle: true,
           backgroundColor: Colors.deepOrange,
         ),
         body: Center(
           child: TextButton(
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                content: Text(
-                  'Hello',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white),
-                ),
-                backgroundColor: Colors.teal,
-                duration: Duration(milliseconds: 1000),
-              ));
-            },
+            onPressed: () => showToast(),
             child: Container(
               height: 50,
               width: 200,
@@ -39,5 +30,16 @@ class SnackBarPage extends StatelessWidget {
             ),
           ),
         ));
+  }
+
+  showToast() {
+    Fluttertoast.showToast(
+        msg: 'Flutter',
+        gravity: ToastGravity.BOTTOM_LEFT,
+        backgroundColor: Colors.redAccent,
+        fontSize: 20.0,
+        textColor: Colors.white,
+        toastLength: Toast.LENGTH_SHORT
+    );
   }
 }

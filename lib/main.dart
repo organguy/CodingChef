@@ -1,5 +1,6 @@
 import 'package:coding_chef/appbar_page.dart';
 import 'package:coding_chef/snackbar_page.dart';
+import 'package:coding_chef/toast_page.dart';
 import 'package:flutter/material.dart';
 import 'grade_page.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'BBANTO',
-      home: SnackBarPage(),
+      home: ToastPage(),
     );
   }
 }
