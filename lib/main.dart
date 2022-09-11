@@ -1,4 +1,5 @@
 import 'package:coding_chef/appbar_page.dart';
+import 'package:coding_chef/buttons_page.dart';
 import 'package:coding_chef/column_page.dart';
 import 'package:coding_chef/container_page.dart';
 import 'package:coding_chef/navigator_page.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'BBANTO',
-      home: SnackBarPage(),
+      home: ButtonsPage(),
     );
   }
 }
