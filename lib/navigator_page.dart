@@ -111,7 +111,7 @@ class NavigatorPageB extends StatelessWidget {
         title: const Text('Navigator Page A'),
         centerTitle: true,
       ),
-      body: SafeArea(
+      body: const SafeArea(
           child: Center(
             child: Text('Screen B')
           )),

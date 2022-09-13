@@ -99,10 +99,10 @@ class ButtonsPage extends StatelessWidget {
             ),
             ButtonBar(
               alignment: MainAxisAlignment.center,
-              buttonPadding: EdgeInsets.all(20.0),
+              buttonPadding: const EdgeInsets.all(20.0),
               children: [
-                TextButton(onPressed: (){}, child: Text('TextButton')),
-                ElevatedButton(onPressed: (){}, child: Text('ElevatedButton'))
+                TextButton(onPressed: (){}, child: const Text('TextButton')),
+                ElevatedButton(onPressed: (){}, child: const Text('ElevatedButton'))
               ],
             )
           ],

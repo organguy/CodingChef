@@ -21,7 +21,7 @@ class SnackBarPage extends StatelessWidget {
               label: 'Undo',
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ThirdPage()));
+                    MaterialPageRoute(builder: (context) => const ThirdPage()));
               },
             ),
           ));

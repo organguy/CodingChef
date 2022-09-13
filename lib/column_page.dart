@@ -16,19 +16,19 @@ class ColumnPage1 extends StatelessWidget {
                 width: 100,
                 height: 100,
                 color: Colors.white,
-                child: Text('Container 1'),
+                child: const Text('Container 1'),
               ),
               Container(
                 width: 100,
                 height: 100,
                 color: Colors.blue,
-                child: Text('Container 2'),
+                child: const Text('Container 2'),
               ),
               Container(
                 width: 100,
                 height: 100,
                 color: Colors.red,
-                child: Text('Container 3'),
+                child: const Text('Container 3'),
               )
             ],
           ),
@@ -53,19 +53,19 @@ class ColumnPage2 extends StatelessWidget {
               width: 100,
               height: 100,
               color: Colors.white,
-              child: Text('Container 1'),
+              child: const Text('Container 1'),
             ),
             Container(
               width: 100,
               height: 100,
               color: Colors.blue,
-              child: Text('Container 2'),
+              child: const Text('Container 2'),
             ),
             Container(
               width: 100,
               height: 100,
               color: Colors.red,
-              child: Text('Container 3'),
+              child: const Text('Container 3'),
             )
           ],
         ),
@@ -88,19 +88,19 @@ class ColumnPage3 extends StatelessWidget {
               width: 100,
               height: 100,
               color: Colors.white,
-              child: Text('Container 1'),
+              child: const Text('Container 1'),
             ),
             Container(
               width: 300,
               height: 100,
               color: Colors.blue,
-              child: Text('Container 2'),
+              child: const Text('Container 2'),
             ),
             Container(
               width: 100,
               height: 100,
               color: Colors.red,
-              child: Text('Container 3'),
+              child: const Text('Container 3'),
             )
           ],
         ),
@@ -123,21 +123,21 @@ class ColumnPage4 extends StatelessWidget {
               width: 100,
               height: 100,
               color: Colors.white,
-              child: Text('Container 1'),
+              child: const Text('Container 1'),
             ),
             Container(
               width: 100,
               height: 100,
               color: Colors.blue,
-              child: Text('Container 2'),
+              child: const Text('Container 2'),
             ),
             Container(
               width: 100,
               height: 100,
               color: Colors.red,
-              child: Text('Container 3'),
+              child: const Text('Container 3'),
             ),
-            Container(
+            const SizedBox(
               width: double.infinity,
               height: 20,
             )
@@ -161,20 +161,20 @@ class ColumnPage5 extends StatelessWidget {
             Container(
               height: 100,
               color: Colors.white,
-              child: Text('Container 1'),
+              child: const Text('Container 1'),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30.0,
             ),
             Container(
               height: 100,
               color: Colors.blue,
-              child: Text('Container 2'),
+              child: const Text('Container 2'),
             ),
             Container(
               height: 100,
               color: Colors.red,
-              child: Text('Container 3'),
+              child: const Text('Container 3'),
             ),
           ],
         ),
