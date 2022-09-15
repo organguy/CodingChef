@@ -37,7 +37,7 @@ class DesktopBody extends StatelessWidget {
               ],
             ),
           ),
-          Container(
+          SizedBox(
             width: 300,
             child: Expanded(
                 child: ListView.builder(

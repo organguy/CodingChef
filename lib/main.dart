@@ -4,6 +4,8 @@ import 'package:coding_chef/column_page.dart';
 import 'package:coding_chef/container_page.dart';
 import 'package:coding_chef/listview_page.dart';
 import 'package:coding_chef/listview_person.dart';
+import 'package:coding_chef/login_app/login_app.dart';
+import 'package:coding_chef/login_dice/login_page.dart';
 import 'package:coding_chef/navigator_page.dart';
 import 'package:coding_chef/responsive_page.dart';
 import 'package:coding_chef/row_page.dart';
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'BBANTO',
-      home: StatefulPage(),
+      home: LoginApp(),
     );
   }
 }
