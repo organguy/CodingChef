@@ -2,6 +2,7 @@ import 'package:coding_chef/appbar_page.dart';
 import 'package:coding_chef/buttons_page.dart';
 import 'package:coding_chef/column_page.dart';
 import 'package:coding_chef/container_page.dart';
+import 'package:coding_chef/future_test_page.dart';
 import 'package:coding_chef/listview_page.dart';
 import 'package:coding_chef/listview_person.dart';
 import 'package:coding_chef/login_app/login_app.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'BBANTO',
-      home: LoginApp(),
+      home: FutureTestPage(),
     );
   }
 }
