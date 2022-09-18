@@ -12,6 +12,7 @@ import 'package:coding_chef/responsive_page.dart';
 import 'package:coding_chef/row_page.dart';
 import 'package:coding_chef/snackbar_page.dart';
 import 'package:coding_chef/toast_page.dart';
+import 'package:coding_chef/weather_app/weather_loading.dart';
 import 'package:flutter/material.dart';
 import 'grade_page.dart';
 import 'onboarding_page.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'BBANTO',
-      home: FutureTestPage(),
+      home: WeatherLoading(),
     );
   }
 }
