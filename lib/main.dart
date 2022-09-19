@@ -12,6 +12,7 @@ import 'package:coding_chef/responsive_page.dart';
 import 'package:coding_chef/row_page.dart';
 import 'package:coding_chef/snackbar_page.dart';
 import 'package:coding_chef/toast_page.dart';
+import 'package:coding_chef/weather_app/weather_app.dart';
 import 'package:coding_chef/weather_app/weather_loading.dart';
 import 'package:flutter/material.dart';
 import 'grade_page.dart';
