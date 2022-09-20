@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "897324409342",
+    "project_id": "codingchefchat",
+    "storage_bucket": "codingchefchat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897324409342:android:6cec17ec4b8c1fa1d0e0af",
+        "android_client_info": {
+          "package_name": "kr.co.organtech.coding_chef"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "897324409342-ce10dt2do3okpn8r8s5982a8a3kilmje.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFA50KOrsLzrfRrKudeM0RkjyYHL_jW0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "897324409342-ce10dt2do3okpn8r8s5982a8a3kilmje.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

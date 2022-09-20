@@ -1,6 +1,7 @@
 import 'package:coding_chef/weather_app/data/network.dart';
 import 'package:coding_chef/weather_app/weather_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'data/my_location.dart';
 
@@ -19,17 +20,12 @@ class _WeatherLoadingState extends State<WeatherLoading> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
+      backgroundColor: Colors.amber,
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-
-          },
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-          child: const Text(
-            'Get my location',
-            style: TextStyle(color: Colors.white),
-          ),
+        child: SpinKitDoubleBounce(
+          color: Colors.white,
+          size: 80.0,
         ),
       ),
     );

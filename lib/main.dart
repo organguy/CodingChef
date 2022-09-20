@@ -3,6 +3,9 @@ import 'package:coding_chef/buttons_page.dart';
 import 'package:coding_chef/column_page.dart';
 import 'package:coding_chef/container_page.dart';
 import 'package:coding_chef/future_test_page.dart';
+import 'package:coding_chef/key_global_page.dart';
+import 'package:coding_chef/key_unique_page.dart';
+import 'package:coding_chef/key_value_page.dart';
 import 'package:coding_chef/listview_page.dart';
 import 'package:coding_chef/listview_person.dart';
 import 'package:coding_chef/login_app/login_app.dart';
@@ -15,11 +18,15 @@ import 'package:coding_chef/toast_page.dart';
 import 'package:coding_chef/weather_app/weather_app.dart';
 import 'package:coding_chef/weather_app/weather_loading.dart';
 import 'package:flutter/material.dart';
+import 'chatting_app/screen/chat_login_screen.dart';
 import 'grade_page.dart';
 import 'onboarding_page.dart';
 import 'stateful_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -39,7 +46,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'BBANTO',
-      home: WeatherLoading(),
+      home: ChatLoginScreen(),
     );
   }
 }
