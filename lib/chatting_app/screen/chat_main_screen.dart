@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatMainScreen extends StatefulWidget {
   const ChatMainScreen({Key? key}) : super(key: key);
@@ -46,9 +47,24 @@ class _ChatMainScreenState extends State<ChatMainScreen> {
           ))
         ],
       ),
-      body: const Center(
-        child: Text('Chat Screen'),
-      ),
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance.collection('chats/Z5Oof5YJ1XN3C0HdhVAk/message').snapshots(),
+        builder: (context, snapshot){
+          final docs = snapshot.data!.docs;
+          return ListView.builder(
+            itemCount: docs.length,
+            itemBuilder: (context, index){
+              return Container(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  docs[index]['text'],
+                  style: const TextStyle(fontSize: 20.0),
+                ),
+              );
+            }
+          );
+        },
+      )
     );
   }
 }
