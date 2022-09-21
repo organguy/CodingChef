@@ -1,3 +1,5 @@
+import 'package:coding_chef/chatting_app/chatting/chat/message.dart';
+import 'package:coding_chef/chatting_app/chatting/chat/new_message.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -40,30 +42,19 @@ class _ChatMainScreenState extends State<ChatMainScreen> {
         actions: [
           IconButton(onPressed: (){
             _auth.signOut();
-            Navigator.pop(context);
           }, icon: const Icon(
             Icons.exit_to_app_sharp,
             color: Colors.white,
           ))
         ],
       ),
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('chats/Z5Oof5YJ1XN3C0HdhVAk/message').snapshots(),
-        builder: (context, snapshot){
-          final docs = snapshot.data!.docs;
-          return ListView.builder(
-            itemCount: docs.length,
-            itemBuilder: (context, index){
-              return Container(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  docs[index]['text'],
-                  style: const TextStyle(fontSize: 20.0),
-                ),
-              );
-            }
-          );
-        },
+      body: Column(
+        children: const [
+          Expanded(
+              child: Messages()
+          ),
+          NewMessages()
+        ],
       )
     );
   }
