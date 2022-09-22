@@ -12,7 +12,10 @@ import 'package:coding_chef/listview_page.dart';
 import 'package:coding_chef/listview_person.dart';
 import 'package:coding_chef/login_app/login_app.dart';
 import 'package:coding_chef/login_dice/login_page.dart';
+import 'package:coding_chef/models/fish_model.dart';
+import 'package:coding_chef/models/seafish_model.dart';
 import 'package:coding_chef/navigator_page.dart';
+import 'package:coding_chef/provider_page.dart';
 import 'package:coding_chef/responsive_page.dart';
 import 'package:coding_chef/row_page.dart';
 import 'package:coding_chef/snackbar_page.dart';
@@ -22,6 +25,7 @@ import 'package:coding_chef/weather_app/weather_app.dart';
 import 'package:coding_chef/weather_app/weather_loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'chatting_app/screen/chat_login_screen.dart';
 import 'grade_page.dart';
 import 'onboarding_page.dart';
@@ -47,10 +51,22 @@ class MyApp extends StatelessWidget {
         '/c' : (context) => NavigatorPageC()
 
       },*/
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'BBANTO',
-      home: ChatEnterSelect(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+            create: (context) =>
+                FishModel(name: 'Salmon', number: 10, size: 'big')
+        ),
+        ChangeNotifierProvider(
+            create: (context) =>
+                SeaFishModel(name: 'Salmon', tunaNumber: 0, size: 'middle')
+        )
+      ],
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'BBANTO',
+        home: FishOrder(),
+      ),
     );
   }
 }

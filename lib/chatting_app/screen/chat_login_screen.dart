@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coding_chef/chatting_app/config/palette.dart';
-import 'package:coding_chef/chatting_app/screen/chat_main_screen.dart';
+import 'package:coding_chef/chatting_app/dialog/image_dialog.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -20,12 +23,26 @@ class _ChatLoginScreenState extends State<ChatLoginScreen> {
   String userName = '';
   String userEmail = '';
   String userPw = '';
+  File? userPickedImage;
+
+  void pickedImage(File image){
+    userPickedImage = image;
+  }
 
   void _tryValidation() {
     final isValid = _formKey.currentState!.validate();
     if (isValid) {
       _formKey.currentState!.save();
     }
+  }
+
+  void showAlert(context) {
+    showDialog(context: context, builder: (context){
+      return Dialog(
+          backgroundColor: Colors.white,
+          child: ImageDialog(pickedImage),
+      );
+    });
   }
 
   @override
@@ -154,18 +171,35 @@ class _ChatLoginScreenState extends State<ChatLoginScreen> {
                                 },
                                 child: Column(
                                   children: [
-                                    Text(
-                                      'SIGNUP',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: isSignupScreen
-                                              ? Palette.activeColor
-                                              : Palette.textColor1),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'SIGNUP',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                              color: isSignupScreen
+                                                  ? Palette.activeColor
+                                                  : Palette.textColor1),
+                                        ),
+                                        const SizedBox(
+                                          width: 15,
+                                        ),
+                                        if(isSignupScreen)
+                                        GestureDetector(
+                                          onTap: (){
+                                            showAlert(context);
+                                          },
+                                          child: Icon(
+                                            Icons.image,
+                                            color: isSignupScreen ? Colors.cyan : Colors.grey,
+                                          ),
+                                        )
+                                      ],
                                     ),
                                     if (isSignupScreen)
                                       Container(
-                                        margin: const EdgeInsets.only(top: 3),
+                                        margin: const EdgeInsets.fromLTRB(0, 3, 35, 0),
                                         height: 2,
                                         width: 55,
                                         color: Colors.orange,
@@ -414,6 +448,21 @@ class _ChatLoginScreenState extends State<ChatLoginScreen> {
                           });
 
                           if(isSignupScreen){
+
+                            if(userPickedImage == null){
+                              setState(() {
+                                isShowSpinner = false;
+                              });
+
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text('Please pick your image'),
+                                    backgroundColor: Colors.blue,
+                                  )
+                              );
+                              return;
+                            }
+
                             _tryValidation();
 
                             try {
@@ -421,11 +470,22 @@ class _ChatLoginScreenState extends State<ChatLoginScreen> {
                                   .createUserWithEmailAndPassword(
                                   email: userEmail, password: userPw);
 
-                              await FirebaseFirestore.instance.collection('user').doc(newUser.user!.uid)
-                              .set({
-                                'userName' : userName,
-                                'email' : userEmail
-                              });
+                              final refImage = FirebaseStorage.instance
+                                  .ref()
+                                  .child('picked_image')
+                                  .child('${newUser.user!.uid}.png');
+
+                              await refImage.putFile(userPickedImage!);
+                              final imageUrl = await refImage.getDownloadURL();
+
+                              await FirebaseFirestore.instance
+                                  .collection('user')
+                                  .doc(newUser.user!.uid)
+                                  .set({
+                                    'userName' : userName,
+                                    'email' : userEmail,
+                                    'picked_image' : imageUrl,
+                                  });
 
                               if(mounted && newUser != null){
                                 setState(() {
@@ -433,19 +493,20 @@ class _ChatLoginScreenState extends State<ChatLoginScreen> {
                                 });
                               }
                             } catch (e) {
-
-                              setState(() {
-                                isShowSpinner = false;
-                              });
-
                               debugPrint(e.toString());
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text(
-                                        'Please check your email and password'),
-                                    backgroundColor: Colors.blue,
-                                  )
-                              );
+                              if(mounted){
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text(
+                                          'Please check your email and password'),
+                                      backgroundColor: Colors.blue,
+                                    )
+                                );
+
+                                setState(() {
+                                  isShowSpinner = false;
+                                });
+                              }
                             }
                           }else{
                             _tryValidation();
@@ -539,4 +600,6 @@ class _ChatLoginScreenState extends State<ChatLoginScreen> {
       ),
     );
   }
+
+
 }
