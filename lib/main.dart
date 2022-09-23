@@ -4,7 +4,10 @@ import 'package:coding_chef/chatting_app/process/chat_enter_select.dart';
 import 'package:coding_chef/chatting_app/screen/chat_main_screen.dart';
 import 'package:coding_chef/column_page.dart';
 import 'package:coding_chef/container_page.dart';
+import 'package:coding_chef/firestore/firestore_login.dart';
 import 'package:coding_chef/future_test_page.dart';
+import 'package:coding_chef/get_x/reactive_state_manager/reactive_state_page.dart';
+import 'package:coding_chef/get_x/simple_state_manager/simple_state_page.dart';
 import 'package:coding_chef/key_global_page.dart';
 import 'package:coding_chef/key_unique_page.dart';
 import 'package:coding_chef/key_value_page.dart';
@@ -18,6 +21,7 @@ import 'package:coding_chef/navigator_page.dart';
 import 'package:coding_chef/provider_page.dart';
 import 'package:coding_chef/responsive_page.dart';
 import 'package:coding_chef/row_page.dart';
+import 'package:coding_chef/shopping_app/view/shopping_page.dart';
 import 'package:coding_chef/snackbar_page.dart';
 import 'package:coding_chef/stream_page.dart';
 import 'package:coding_chef/toast_page.dart';
@@ -43,6 +47,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'BBANTO',
+      home: ShoppingPage(),
+    );
+
     /*return MaterialApp(
       initialRoute: '/',
       routes: {
@@ -51,7 +62,7 @@ class MyApp extends StatelessWidget {
         '/c' : (context) => NavigatorPageC()
 
       },*/
-    return MultiProvider(
+    /*return MultiProvider(
       providers: [
         ChangeNotifierProvider(
             create: (context) =>
@@ -67,6 +78,6 @@ class MyApp extends StatelessWidget {
         title: 'BBANTO',
         home: FishOrder(),
       ),
-    );
+    );*/
   }
 }
