@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 
 class BeautyController extends GetxController{
   var productList = <BeautyProduct>[].obs;
+  var isLoadedData = false.obs;
+  var cartItemCount = 0.obs;
 
   @override
   void onInit() {
@@ -16,6 +18,11 @@ class BeautyController extends GetxController{
     var products = await BeautyServices.fetchProducts();
     if(products != null){
       productList.value = products;
+      isLoadedData.value = true;
     }
+  }
+
+  void addCartItem(){
+    cartItemCount.value++;
   }
 }

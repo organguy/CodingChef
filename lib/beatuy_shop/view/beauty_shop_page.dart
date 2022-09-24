@@ -22,7 +22,9 @@ class BeautyShopPage extends StatelessWidget {
             icon: const Icon(Icons.view_list_rounded)
           ),
           IconButton(
-              onPressed: (){},
+              onPressed: (){
+
+              },
               icon: const Icon(Icons.shopping_cart)
           ),
         ],
@@ -30,18 +32,41 @@ class BeautyShopPage extends StatelessWidget {
       body: Container(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16),
-          child: Obx(() => GridView.builder(
-            itemCount: beautyController.productList.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10
-            ),
-            itemBuilder: (context, index){
-              return BeautyTile(beautyController.productList[index]);
-            })
+          child: Obx(() {
+            if(!beautyController.isLoadedData.value){
+              return const Center(
+                  child: CircularProgressIndicator()
+              );
+            }else{
+              return GridView.builder(
+                  itemCount: beautyController.productList.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10
+                  ),
+                  itemBuilder: (context, index){
+                    return BeautyTile(beautyController.productList[index]);
+                  }
+              );
+            }
+          }
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: (){
+
+        },
+        label: Obx(() => Text(
+            'Item : ${beautyController.cartItemCount.value}',
+            style: const TextStyle(
+              fontSize: 16
+            ),
+          ),
+        ),
+        icon: const Icon(Icons.add_shopping_cart_rounded),
+        backgroundColor: Colors.redAccent,
       ),
     );
   }

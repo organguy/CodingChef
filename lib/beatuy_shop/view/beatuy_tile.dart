@@ -1,3 +1,4 @@
+import 'package:coding_chef/beatuy_shop/controller/beauty_controller.dart';
 import 'package:coding_chef/beatuy_shop/model/beauty_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -5,8 +6,9 @@ import 'package:get/get.dart';
 class BeautyTile extends StatelessWidget {
 
   final BeautyProduct product;
+  final beautyController = Get.put(BeautyController());
 
-  const BeautyTile(this.product, {Key? key}) : super(key: key);
+  BeautyTile(this.product, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +23,15 @@ class BeautyTile extends StatelessWidget {
               child: Stack(
                 children: [
                   Container(
-                    height: 75,
                     width: 100,
+                    height: 120,
                     clipBehavior: Clip.antiAlias,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4)
                     ),
                     child: Image.network(
                       product.imageLink,
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                   ),
                   Obx(() => CircleAvatar(
@@ -39,7 +41,7 @@ class BeautyTile extends StatelessWidget {
                         onPressed: (){
                           product.like.toggle();
                         },
-                        icon: product.like.value ? const Icon(Icons.favorite_rounded) : const Icon(Icons.favorite_rounded),
+                        icon: product.like.value ? const Icon(Icons.favorite_rounded) : const Icon(Icons.favorite_outline_rounded),
                         iconSize: 18,
                       ),
                     ),
@@ -61,28 +63,53 @@ class BeautyTile extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.green,
-                borderRadius: BorderRadius.circular(12)
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    product.rating.toString(),
-                    style: const TextStyle(
-                      color: Colors.white
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(12)
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        product.rating.toString(),
+                        style: const TextStyle(
+                          color: Colors.white
+                        ),
+                      ),
+                      const Icon(
+                        Icons.star,
+                        size: 16,
+                        color: Colors.white,
+                      ),
+                    ],
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: (){
+                    beautyController.addCartItem();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+                    minimumSize: Size.zero,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25)
+                    ),
+                    backgroundColor: Colors.blue
+                  ),
+                  child: const Text(
+                    'Add to cart',
+                    style: TextStyle(
+                      fontSize: 12,
                     ),
                   ),
-                  const Icon(
-                    Icons.star,
-                    size: 16,
-                    color: Colors.white,
-                  )
-                ],
-              ),
+        
+                )
+              ],
             ),
             const SizedBox(
               height: 8,
