@@ -1,4 +1,5 @@
 import 'package:coding_chef/appbar_page.dart';
+import 'package:coding_chef/beatuy_shop/view/beauty_shop_page.dart';
 import 'package:coding_chef/buttons_page.dart';
 import 'package:coding_chef/chatting_app/process/chat_enter_select.dart';
 import 'package:coding_chef/chatting_app/screen/chat_main_screen.dart';
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'BBANTO',
-      home: ShoppingPage(),
+      home: BeautyShopPage(),
     );
 
     /*return MaterialApp(
