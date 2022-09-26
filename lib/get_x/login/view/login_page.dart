@@ -64,32 +64,39 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10,),
-                GestureDetector(
-                  onTap: (){
-                    AuthController.instance.login(emailController.text.trim(), pwController.text.trim());
-                  },
-                  child: Container(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                      child: Container(
-                        padding: const EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(12)
-                        ),
-                        child: const Center(
-                          child: Text(
-                            'Sign in',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold
+                Obx(() {
+                    if(!AuthController.instance.isProgress.value){
+                      return GestureDetector(
+                        onTap: (){
+                          AuthController.instance.login(emailController.text.trim(), pwController.text.trim());
+                        },
+                        child: Container(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                            child: Container(
+                              padding: const EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  borderRadius: BorderRadius.circular(12)
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  'Sign in',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                  ),
+                      );
+                    }else{
+                      return const CircularProgressIndicator();
+                    }
+                  }
                 ),
                 const SizedBox(height: 25,),
                 Row(

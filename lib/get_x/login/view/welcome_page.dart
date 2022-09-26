@@ -10,7 +10,7 @@ class WelcomePage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            const Text('Welcome'),
+            Text(AuthController.instance.auth.currentUser!.email!),
             IconButton(
               onPressed: (){
                 AuthController.instance.logout();

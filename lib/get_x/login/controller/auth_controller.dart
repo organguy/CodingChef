@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coding_chef/get_x/login/view/login_page.dart';
 import 'package:coding_chef/get_x/login/view/welcome_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,6 +9,7 @@ class AuthController extends GetxController{
   static AuthController instance = Get.find();
   late Rx<User?> _user;
   FirebaseAuth auth = FirebaseAuth.instance;
+  var isProgress =false.obs;
 
   @override
   void onReady() {
@@ -25,10 +27,21 @@ class AuthController extends GetxController{
     }
   }
 
-  void register(String email, String password) async{
+  void register(String userName, String email, String password) async{
+
+    isProgress.value = true;
+
     try{
       await auth.createUserWithEmailAndPassword(email: email, password: password);
+      await FirebaseFirestore.instance
+          .collection('user')
+          .doc(_user.value!.uid)
+          .set({
+            'userName' : userName,
+          });
+      isProgress.value = false;
     }catch(e){
+      isProgress.value = false;
       Get.snackbar(
         'Error message',
         'User message',
@@ -47,9 +60,14 @@ class AuthController extends GetxController{
   }
 
   void login(String email, String password) async{
+
+    isProgress.value = true;
+
     try{
       await auth.signInWithEmailAndPassword(email: email, password: password);
+      isProgress.value = false;
     }catch(e){
+      isProgress.value = false;
       Get.snackbar(
           'Error message',
           'User message',
