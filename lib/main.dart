@@ -7,6 +7,8 @@ import 'package:coding_chef/column_page.dart';
 import 'package:coding_chef/container_page.dart';
 import 'package:coding_chef/firestore/firestore_login.dart';
 import 'package:coding_chef/future_test_page.dart';
+import 'package:coding_chef/get_x/login/controller/auth_controller.dart';
+import 'package:coding_chef/get_x/login/view/signup_page.dart';
 import 'package:coding_chef/get_x/reactive_state_manager/reactive_state_page.dart';
 import 'package:coding_chef/get_x/simple_state_manager/simple_state_page.dart';
 import 'package:coding_chef/key_global_page.dart';
@@ -30,16 +32,18 @@ import 'package:coding_chef/weather_app/weather_app.dart';
 import 'package:coding_chef/weather_app/weather_loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'chatting_app/screen/chat_login_screen.dart';
 import 'grade_page.dart';
 import 'onboarding_page.dart';
 import 'stateful_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:coding_chef/get_x/login/view/login_page.dart' as loginX;
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp().then((value) => Get.put(AuthController()));
   runApp(const MyApp());
 }
 
@@ -49,10 +53,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return MaterialApp(
+    return GetMaterialApp(
+      theme: ThemeData(
+          primaryColor: Colors.blue
+      ),
       debugShowCheckedModeBanner: false,
       title: 'BBANTO',
-      home: BeautyShopPage(),
+      home: loginX.LoginPage(),
     );
 
     /*return MaterialApp(
