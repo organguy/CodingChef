@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SnackBarPage extends StatelessWidget {
   const SnackBarPage({Key? key}) : super(key: key);
@@ -20,8 +21,7 @@ class SnackBarPage extends StatelessWidget {
             action: SnackBarAction(
               label: 'Undo',
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const ThirdPage()));
+                Get.to(const ThirdPage());
               },
             ),
           ));
@@ -40,8 +40,7 @@ class HomeBody extends StatelessWidget {
       child: ElevatedButton(
         child: const Text('Go to the second page'),
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const SecondPage()));
+          Get.to(const SecondPage());
         },
       ),
     );

@@ -6,6 +6,10 @@ class ContainerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Container Widget'),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: Container(
           color: Colors.red,

@@ -1,10 +1,10 @@
-import 'package:coding_chef/appbar_page.dart';
+import 'package:coding_chef/appbar/appbar_page.dart';
 import 'package:coding_chef/beatuy_shop/view/beauty_shop_page.dart';
 import 'package:coding_chef/buttons_page.dart';
 import 'package:coding_chef/chatting_app/process/chat_enter_select.dart';
 import 'package:coding_chef/chatting_app/screen/chat_main_screen.dart';
-import 'package:coding_chef/column_page.dart';
-import 'package:coding_chef/container_page.dart';
+import 'package:coding_chef/column/column_page.dart';
+import 'package:coding_chef/container/container_page.dart';
 import 'package:coding_chef/firestore/firestore_login.dart';
 import 'package:coding_chef/future_test_page.dart';
 import 'package:coding_chef/get_x/login/controller/auth_controller.dart';
@@ -25,9 +25,9 @@ import 'package:coding_chef/provider_page.dart';
 import 'package:coding_chef/responsive_page.dart';
 import 'package:coding_chef/row_page.dart';
 import 'package:coding_chef/shopping_app/view/shopping_page.dart';
-import 'package:coding_chef/snackbar_page.dart';
+import 'package:coding_chef/snackbar/snackbar_page.dart';
 import 'package:coding_chef/stream_page.dart';
-import 'package:coding_chef/toast_page.dart';
+import 'package:coding_chef/toast/toast_page.dart';
 import 'package:coding_chef/weather_app/weather_app.dart';
 import 'package:coding_chef/weather_app/weather_loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -35,7 +35,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'chatting_app/screen/chat_login_screen.dart';
-import 'grade_page.dart';
+import 'welocem/grade_page.dart';
 import 'onboarding_page.dart';
 import 'stateful_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -43,7 +43,7 @@ import 'package:coding_chef/get_x/login/view/login_page.dart' as loginX;
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp().then((value) => Get.put(AuthController()));
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -59,7 +59,9 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       title: 'BBANTO',
-      home: loginX.LoginPage(),
+      home: Scaffold(
+        body: initBody(),
+      ),
     );
 
     /*return MaterialApp(
@@ -87,5 +89,47 @@ class MyApp extends StatelessWidget {
         home: FishOrder(),
       ),
     );*/
+  }
+
+  SingleChildScrollView initBody() {
+    return SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(40.0),
+          child: Column(
+            children: const [
+              LectureButton(title: 'Welcome Flutter', page: Grade()),
+              SizedBox(height: 10,),
+              LectureButton(title: 'AppBar & Drawer', page: AppbarPage()),
+              SizedBox(height: 10,),
+              LectureButton(title: 'SnackBar', page: SnackBarPage()),
+              SizedBox(height: 10,),
+              LectureButton(title: 'Toast', page: ToastPage()),
+              SizedBox(height: 10,),
+              LectureButton(title: 'Container Widget', page: ContainerPage()),
+              SizedBox(height: 10,),
+              LectureButton(title: 'Column Widget', page: ColumnPage()),
+            ],
+          ),
+        ),
+      );
+  }
+}
+
+class LectureButton extends StatelessWidget {
+
+  final String title;
+  final Widget page;
+
+  const LectureButton({required this.title, required this.page, Key? key,}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          minimumSize: const Size.fromHeight(60),
+        ),
+        onPressed:() => Get.to(page),
+        child: Text(title, style: const TextStyle(fontSize: 20),)
+    );
   }
 }
