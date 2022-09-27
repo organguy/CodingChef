@@ -23,7 +23,7 @@ import 'package:coding_chef/models/seafish_model.dart';
 import 'package:coding_chef/navigator_page.dart';
 import 'package:coding_chef/provider_page.dart';
 import 'package:coding_chef/responsive_page.dart';
-import 'package:coding_chef/row_page.dart';
+import 'package:coding_chef/row/row_page.dart';
 import 'package:coding_chef/shopping_app/view/shopping_page.dart';
 import 'package:coding_chef/snackbar/snackbar_page.dart';
 import 'package:coding_chef/stream_page.dart';
@@ -108,6 +108,8 @@ class MyApp extends StatelessWidget {
               LectureButton(title: 'Container Widget', page: ContainerPage()),
               SizedBox(height: 10,),
               LectureButton(title: 'Column Widget', page: ColumnPage()),
+              SizedBox(height: 10,),
+              LectureButton(title: 'Column Widget', page: RowPage()),
             ],
           ),
         ),
