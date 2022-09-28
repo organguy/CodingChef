@@ -91,7 +91,6 @@ class SignupPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 10,),
-                  if(AuthController.instance.isProgress.isFalse)
                   Obx(() {
                       if (!AuthController.instance.isProgress.value) {
                         return GestureDetector(
