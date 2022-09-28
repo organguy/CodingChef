@@ -19,11 +19,8 @@ class _LoginPageState extends State<FirebaseLogin> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
-        backgroundColor: Colors.redAccent,
+        title: const Text('Firebase Login'),
         centerTitle: true,
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
       ),
       body: GestureDetector(
         onTap: (){

@@ -78,7 +78,7 @@ class OnBoardingMyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Main Page'),
+        title: const Text('On Boarding Page'),
       ),
       body: Center(
         child: Column(

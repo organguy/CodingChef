@@ -10,11 +10,16 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    Get.put(AuthController());
+
     var emailController = TextEditingController();
     var pwController = TextEditingController();
 
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      appBar: AppBar(
+        title: const Text('GetX Login'),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(

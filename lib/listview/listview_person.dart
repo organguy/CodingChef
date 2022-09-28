@@ -1,6 +1,8 @@
-import 'package:coding_chef/listview_person_detail.dart';
+
 import 'package:coding_chef/models/person.dart';
 import 'package:flutter/material.dart';
+
+import 'listview_person_detail.dart';
 
 class ListViewPerson extends StatefulWidget {
   const ListViewPerson({Key? key}) : super(key: key);

@@ -1,16 +1,15 @@
 import 'package:coding_chef/login_dice/dice_page.dart';
 import 'package:flutter/material.dart';
 
-class KeyValuePage extends StatefulWidget {
-  const KeyValuePage({Key? key}) : super(key: key);
+class DiceLogin extends StatefulWidget {
+  const DiceLogin({Key? key}) : super(key: key);
 
   @override
-  State<KeyValuePage> createState() => _KeyValuePageState();
+  State<DiceLogin> createState() => _DiceLoginState();
 }
 
-class _KeyValuePageState extends State<KeyValuePage> {
+class _DiceLoginState extends State<DiceLogin> {
 
-  bool emailField = true;
   TextEditingController idController = TextEditingController();
   TextEditingController pwController = TextEditingController();
 
@@ -52,22 +51,18 @@ class _KeyValuePageState extends State<KeyValuePage> {
                         padding: const EdgeInsets.all(40.0),
                         child: Column(
                           children: [
-                            if(emailField)
-                              const TextField(
-                                key: ValueKey(1),
-                                //controller: idController,
-                                decoration:
-                                InputDecoration(
-                                    labelText: 'Enter "dice"'),
-                                keyboardType: TextInputType.emailAddress,
-                              ),
-                            const TextField(
-                              key: ValueKey(2),
-                              //controller: pwController,
+                            TextField(
+                              controller: idController,
                               decoration:
-                              InputDecoration(labelText: 'Enter Password'),
+                                  const InputDecoration(labelText: 'Enter "dice"'),
+                              keyboardType: TextInputType.emailAddress,
+                            ),
+                            TextField(
+                              controller: pwController,
+                              decoration:
+                                  const InputDecoration(labelText: 'Enter Password'),
                               keyboardType: TextInputType.text,
-                              obscureText: false,
+                              obscureText: true,
                             ),
                             const SizedBox(
                               height: 40.0,
@@ -77,18 +72,25 @@ class _KeyValuePageState extends State<KeyValuePage> {
                                 height: 50.0,
                                 child: ElevatedButton(
                                     onPressed: () {
-                                      setState(() {
-                                        emailField = false;
-                                      });
+                                      if(idController.text == 'dice' && pwController.text == '1234'){
+                                        Navigator.push(context,
+                                            MaterialPageRoute(builder: (context) => const DicePage()
+                                            )
+                                        );
+                                      }else if(idController.text == 'dice' && pwController.text != '1234'){
+                                        showSnackBar(context, 2);
+                                      }else if(idController.text != 'dice' && pwController.text == '1234'){
+                                        showSnackBar(context, 3);
+                                      }else{
+                                        showSnackBar(context, 1);
+                                      }
                                     },
                                     style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.orangeAccent,
-                                        minimumSize: Size(150, 50),
-                                    ),
+                                        backgroundColor: Colors.orangeAccent),
                                     child: const Icon(
-                                      Icons.visibility_off,
+                                      Icons.arrow_forward,
                                       color: Colors.white,
-                                      size: 35.0,
+                                      size: 45.0,
                                     )
                                 )
                             )

@@ -3,6 +3,7 @@ import 'package:coding_chef/weather_app/weather_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'data/my_location.dart';
 
 class WeatherLoading extends StatefulWidget {
@@ -61,9 +62,13 @@ class _WeatherLoadingState extends State<WeatherLoading> {
       showToast('API 호출이 정상적이지 않습니다.');
       return;
     }
-      Navigator.push(context, MaterialPageRoute(builder: (context){
-        return WeatherApp(parseWeatherData: weatherData, parseAirData: airData,);
-      }));
+
+    Get.off(
+        WeatherApp(
+            parseWeatherData: weatherData,
+            parseAirData: airData
+        )
+    );
   }
 
   showToast(String message) {

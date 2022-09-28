@@ -1,6 +1,5 @@
 
-
-import 'package:coding_chef/beatuy_shop/model/beauty_model.dart';
+import 'package:coding_chef/get_x/beatuy_shop/model/beauty_model.dart';
 import 'package:http/http.dart' as http;
 
 class BeautyServices{
@@ -14,5 +13,6 @@ class BeautyServices{
       var jsonData = response.body;
       return productFromJson(jsonData);
     }
+    return null;
   }
 }

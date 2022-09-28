@@ -1,15 +1,15 @@
-import 'package:coding_chef/login_dice/dice_page.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class KeyValuePage extends StatefulWidget {
+  const KeyValuePage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<KeyValuePage> createState() => _KeyValuePageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _KeyValuePageState extends State<KeyValuePage> {
 
+  bool emailField = true;
   TextEditingController idController = TextEditingController();
   TextEditingController pwController = TextEditingController();
 
@@ -18,11 +18,8 @@ class _LoginPageState extends State<LoginPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
-        backgroundColor: Colors.redAccent,
+        title: const Text('Value Key'),
         centerTitle: true,
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
       ),
       body: GestureDetector(
         onTap: (){
@@ -51,18 +48,22 @@ class _LoginPageState extends State<LoginPage> {
                         padding: const EdgeInsets.all(40.0),
                         child: Column(
                           children: [
-                            TextField(
-                              controller: idController,
+                            if(emailField)
+                              const TextField(
+                                key: ValueKey(1),
+                                //controller: idController,
+                                decoration:
+                                InputDecoration(
+                                    labelText: 'Enter "dice"'),
+                                keyboardType: TextInputType.emailAddress,
+                              ),
+                            const TextField(
+                              key: ValueKey(2),
+                              //controller: pwController,
                               decoration:
-                                  const InputDecoration(labelText: 'Enter "dice"'),
-                              keyboardType: TextInputType.emailAddress,
-                            ),
-                            TextField(
-                              controller: pwController,
-                              decoration:
-                                  const InputDecoration(labelText: 'Enter Password'),
+                              InputDecoration(labelText: 'Enter Password'),
                               keyboardType: TextInputType.text,
-                              obscureText: true,
+                              obscureText: false,
                             ),
                             const SizedBox(
                               height: 40.0,
@@ -72,25 +73,18 @@ class _LoginPageState extends State<LoginPage> {
                                 height: 50.0,
                                 child: ElevatedButton(
                                     onPressed: () {
-                                      if(idController.text == 'dice' && pwController.text == '1234'){
-                                        Navigator.push(context,
-                                            MaterialPageRoute(builder: (context) => const DicePage()
-                                            )
-                                        );
-                                      }else if(idController.text == 'dice' && pwController.text != '1234'){
-                                        showSnackBar(context, 2);
-                                      }else if(idController.text != 'dice' && pwController.text == '1234'){
-                                        showSnackBar(context, 3);
-                                      }else{
-                                        showSnackBar(context, 1);
-                                      }
+                                      setState(() {
+                                        emailField = false;
+                                      });
                                     },
                                     style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.orangeAccent),
+                                        backgroundColor: Colors.orangeAccent,
+                                        minimumSize: const Size(150, 50),
+                                    ),
                                     child: const Icon(
-                                      Icons.arrow_forward,
+                                      Icons.visibility_off,
                                       color: Colors.white,
-                                      size: 45.0,
+                                      size: 35.0,
                                     )
                                 )
                             )

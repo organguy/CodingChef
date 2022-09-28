@@ -1,5 +1,5 @@
-import 'package:coding_chef/beatuy_shop/controller/beauty_controller.dart';
-import 'package:coding_chef/beatuy_shop/model/beauty_model.dart';
+import 'package:coding_chef/get_x/beatuy_shop/controller/beauty_controller.dart';
+import 'package:coding_chef/get_x/beatuy_shop/model/beauty_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

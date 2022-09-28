@@ -14,7 +14,7 @@ class _StatefulPageState extends State<StatefulPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Stateful Page'),
+        title: const Text('Stateful Widget'),
       ),
       body: SafeArea(
           child: Center(

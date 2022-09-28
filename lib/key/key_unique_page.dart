@@ -19,6 +19,9 @@ class _KeyUniquePageState extends State<KeyUniquePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Unique Key'),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

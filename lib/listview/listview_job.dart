@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ListViewPage extends StatefulWidget {
-  const ListViewPage({Key? key}) : super(key: key);
+class ListViewJob extends StatefulWidget {
+  const ListViewJob({Key? key}) : super(key: key);
 
   @override
-  State<ListViewPage> createState() => _ListViewPageState();
+  State<ListViewJob> createState() => _ListViewJobState();
 }
 
-class _ListViewPageState extends State<ListViewPage> {
+class _ListViewJobState extends State<ListViewJob> {
   var titleList = [
     'Dentist',
     'Pharmacist',
@@ -54,10 +54,8 @@ class _ListViewPageState extends State<ListViewPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'ListView Page',
-          style: TextStyle(color: Colors.grey),
+          'ListView Job',
         ),
-        backgroundColor: Colors.white,
         elevation: 0.0,
       ),
       body: ListView.builder(

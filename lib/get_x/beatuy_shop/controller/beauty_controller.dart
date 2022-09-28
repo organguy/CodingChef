@@ -1,5 +1,5 @@
-import 'package:coding_chef/beatuy_shop/data/beauty_service.dart';
-import 'package:coding_chef/beatuy_shop/model/beauty_model.dart';
+import 'package:coding_chef/get_x/beatuy_shop/data/beauty_service.dart';
+import 'package:coding_chef/get_x/beatuy_shop/model/beauty_model.dart';
 import 'package:get/get.dart';
 
 
